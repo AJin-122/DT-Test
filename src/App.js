@@ -1,10 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { Unity, useUnityContext } from "react-unity-webgl";
+
 function App() {
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "Build/Build.loader.js",
+    dataUrl: "Build/Build.data",
+    frameworkUrl: "Build/Build.framework.js",
+    codeUrl: "Build/Build.wasm"
+  });
+
   return (
     <div className="App">
       <header className="App-header">
+        <Unity unityProvider={unityProvider} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -21,5 +31,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
